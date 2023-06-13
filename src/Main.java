@@ -2,43 +2,40 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int quantidade;
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Digite a quantidade de alunos: ");
-        quantidade = sc.nextInt();
+        int quantidade = sc.nextInt(); // eu gosto de códigos mais reduzidos então optei por fazer a declaração da variável já com o valor.
 
         Aluno[] alunos = new Aluno[quantidade];
 
         for (int i = 0; i < quantidade; i++) {
             alunos[i] = new Aluno();
 
+            //Nesses casos no qual você cria uma nova variável, para ser utilizada apenas na próxima linha
+            //pode ser resumido simplesmente passando "sc.nextLine()" nos parâmetros dos setters
+
             System.out.println("Digite o nome do aluno  " + (i + 1) + ":");
             sc.nextLine();
-            String nome = sc.nextLine();
-            alunos[i].setNomeAluno(nome);
+            alunos[i].setNomeAluno(sc.nextLine());
+
+            //Assim reduzira seu código.
 
             System.out.println("Digite a nota do aluno " + (i + 1) + " no primeiro bimestre: ");
-            float notaPrimeiroBimestre = sc.nextFloat();
-            alunos[i].setNotaPrimeiroBimestre(notaPrimeiroBimestre);
+            alunos[i].setNotaPrimeiroBimestre(sc.nextFloat());
 
             System.out.println("Digite a nota do aluno " + (i + 1) + " no segundo bimestre: ");
-            float notaSegundoBimestre = sc.nextFloat();
-            alunos[i].setNotaSegundoBimestre(notaSegundoBimestre);
+            alunos[i].setNotaSegundoBimestre(sc.nextFloat());
 
             System.out.println("Digite a nota do aluno " + (i + 1) + " no terceiro bimestre: ");
-            float notaTerceiroBimestre = sc.nextFloat();
-            alunos[i].setNotaTerceiroBimestre(notaTerceiroBimestre);
+            alunos[i].setNotaTerceiroBimestre(sc.nextFloat());
 
             System.out.println("Digite a nota do aluno " + (i + 1) + " no quarto bimestre: ");
-            float notaQuartoBimestre = sc.nextFloat();
-            alunos[i].setNotaQuartoBimestre(notaQuartoBimestre);
-
-
+            alunos[i].setNotaQuartoBimestre(sc.nextFloat());
         }
 
         for (int i = 0; i < quantidade; i++) {
-
             float media = alunos[i].calcularMedia();
             System.out.println("A média do aluno: " + alunos[i].getNomeAluno() + (i + 1) + " é: " + media);
 
@@ -56,63 +53,7 @@ public class Main {
 
 }
 
-
-class Aluno {
-
-    private String NomeAluno;
-
-    public String getNomeAluno() {
-        return NomeAluno;
-    }
-
-    public void setNomeAluno(String nomeAluno) {
-        NomeAluno = nomeAluno;
-    }
-
-    private float notaPrimeiroBimestre;
-    private float notaSegundoBimestre;
-
-    private float notaTerceiroBimestre;
-
-    private float notaQuartoBimestre;
-
-    public Aluno() {
-    }
-
-    public float getNotaQuartoBimestre() {
-        return notaQuartoBimestre;
-    }
-
-    public void setNotaQuartoBimestre(float notaQuartoBimestre) {
-        this.notaQuartoBimestre = notaQuartoBimestre;
-    }
-
-    public float getNotaTerceiroBimestre() {
-        return notaTerceiroBimestre;
-    }
-
-    public void setNotaTerceiroBimestre(float notaTerceiroBimestre) {
-        this.notaTerceiroBimestre = notaTerceiroBimestre;
-    }
-
-    public float getNotaPrimeiroBimestre() {
-        return notaPrimeiroBimestre;
-    }
-
-    public void setNotaPrimeiroBimestre(float notaPrimeiroBimestre) {
-        this.notaPrimeiroBimestre = notaPrimeiroBimestre;
-    }
-
-    public float getNotaSegundoBimestre() {
-        return notaSegundoBimestre;
-    }
-
-    public void setNotaSegundoBimestre(float notaSegundoBimestre) {
-        this.notaSegundoBimestre = notaSegundoBimestre;
-    }
+//Dê preferencias por fazer classes em seus arquivos proprios, fica mais facil a leitura do código em grande escala
 
 
-    public float calcularMedia() {
-        return (notaPrimeiroBimestre + notaSegundoBimestre + notaTerceiroBimestre + notaQuartoBimestre) / 4;
-    }
-}
+//Só lembrando essas mudanças são mais voltadas a boas práticas e organização de código, a sua lógica está correta e não tem oque mudar diante a isso :)
